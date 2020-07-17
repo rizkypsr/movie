@@ -8,6 +8,8 @@
     --black-color: rgba(0, 0, 0, 1);
     --dark-green-color: #63af65;
     --green-color: #4caf50;
+    --invalid-color: #ff0000;
+    --valid-color: #44e444;
 }
 
 * {
@@ -104,11 +106,11 @@ nav.show-up {
     cursor: pointer;
 }
 
-.nav-links li#username {
+.nav-links li#name {
     text-decoration: underline;
 }
 
-.nav-links li#username:hover {
+.nav-links li#name:hover {
     font-weight: bold;
     text-decoration-color: var(--text-orange-color);
 }
@@ -211,28 +213,23 @@ nav.show-up {
     border-color: var(--green-color);
 }
 
-input[type="text"]:focus ~ .username-valid-input {
-    display: inherit;
-}
-
-input[type="password"]:focus ~ .password-valid-input {
+input[type="text"]:focus ~ .name-valid-input {
     display: inherit;
 }
 
 .input-field.valid {
-    color: #44e444;
+    color: var(--valid-color);
 }
 
 .input-field.invalid {
-    color: #ff0000;
+    color: var(--invalid-color);
 }
 
 form {
     margin-top: 1rem;
 }
 
-.username-valid-input,
-.password-valid-input {
+.name-valid-input {
     color: gray;
     list-style-type: circle;
     list-style-position: inside;
@@ -288,7 +285,7 @@ button#register-btn {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     nav {
-        left: -600px;
+        left: -680px;
     }
 }
 

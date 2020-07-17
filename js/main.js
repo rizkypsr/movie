@@ -2,11 +2,14 @@ const menuBtn = document.querySelector("#menu-button");
 const navbar = document.querySelector("nav");
 
 const form = document.querySelector("form");
-const usernameInput = form.elements.namedItem("username");
+const usernameInput = form.elements.namedItem("name");
 
-const usernameBtn = document.querySelector("#username");
+const usernameBtn = document.querySelector("#name");
 const modalLogin = document.querySelector(".modal-container");
 const closeModal = document.querySelector(".close");
+const loginBtn = document.querySelector("#login-btn");
+
+let isNameExist;
 
 window.addEventListener("load", checkAccount);
 
@@ -18,21 +21,19 @@ form.addEventListener("submit", (e) => {
 });
 
 usernameInput.addEventListener("input", (e) => {
-    const loginBtn = document.querySelector("#login-btn");
-    const errorInfo = document.querySelector("#error-user");
-    const usernameLocal = getAccountLocalStorage();
-    const target = e.target;
+    const storedName = getAccountLocalStorage();
 
-    if (target.name == "username") {
-        if (usernameLocal.includes(target.value)) {
-            loginBtn.disabled = true;
-            errorInfo.innerHTML = "Username has already taken";
-            errorInfo.style.display = "block";
-        } else {
-            loginBtn.disabled = false;
-            errorInfo.style.display = "none";
-        }
+    if (e.target.value.length >= 3) {
+        loginBtn.disabled = false;
+        usernameInput.classList.add("valid");
+        usernameInput.classList.remove("invalid");
+    } else {
+        loginBtn.disabled = true;
+        usernameInput.classList.add("invalid");
+        usernameInput.classList.remove("valid");
     }
+
+    isNameExist = storedName.includes(e.target.value);
 });
 
 menuBtn.addEventListener("click", () => {
@@ -41,6 +42,7 @@ menuBtn.addEventListener("click", () => {
 
 usernameBtn.addEventListener("click", () => {
     showNavbar();
+    loginBtn.disabled = true;
     modalLogin.classList.toggle("show-modal");
 });
 
@@ -59,17 +61,13 @@ function checkAccount() {
 }
 
 function setAccountLocalStorage(uname) {
-    const errorInfo = document.querySelector("#error-user");
     const username = getAccountLocalStorage();
 
-    if (!username.includes(uname)) {
+    if (!isNameExist) {
         username.push(uname);
         localStorage.setItem("username", JSON.stringify(username));
-        usernameBtn.innerText = uname;
-    } else {
-        errorInfo.innerHTML = "Username has already taken";
-        errorInfo.style.display = "block";
     }
+    usernameBtn.innerText = uname;
 }
 
 function getAccountLocalStorage() {

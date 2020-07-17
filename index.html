@@ -15,7 +15,7 @@
         <header>
             <div class="logo">
                 <h1>Movies</h1>
-                <img id="menu-button" src="img/icons8-menu-30.png">
+                <img id="menu-button" src="img/icons8-menu-30.png" alt="Menu Icon">
             </div>
             <nav>
                 <ul class="nav-links">
@@ -24,7 +24,7 @@
                     <li><a href="">Videos</a></li>
                     <li><a href="">News</a></li>
                     <li><a href="">About</a></li>
-                    <li id="username">login</li>
+                    <li id="name">login</li>
                 </ul>
             </nav>
         </header>
@@ -193,20 +193,18 @@
     <div class="modal-container">
         <div class="modal">
             <div class="header-modal">
-                <h2>Login Form</h2>
-                <img class="close" src="img/close.png">
+                <h2>Save your name</h2>
+                <img class="close" src="img/close.png" alt="Close Icon">
             </div>
             <form>
-                <label><b>Username</b></label>
-                <input type="text" autocomplete="off" minlength="3" maxlength="10" placeholder="Enter Username"
-                    name="username" class="input-field" required>
-                <ul class="username-valid-input">
+                <label><b>Name</b></label>
+                <input type="text" autocomplete="off" minlength="3" maxlength="10" placeholder="Enter your name"
+                    name="name" class="input-field" required>
+                <ul class="name-valid-input">
                     <li>At least 3 characters long</li>
                 </ul>
-                <button type="submit" id="login-btn" disabled>Login</button>
-                <button id="register-btn">Register</button>
+                <button type="submit" id="login-btn" disabled>Save</button>
             </form>
-            <p id="error-user"></p>
         </div>
     </div>
 
