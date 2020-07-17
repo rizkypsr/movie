@@ -1,0 +1,349 @@
+/* Start Global */
+
+:root {
+    --text-color: #fff;
+    --text-orange-color: #d8b038;
+    --black-transparent-7: rgba(0, 0, 0, 0.9);
+    --black-transparent-4: rgba(0, 0, 0, 0.4);
+    --black-color: rgba(0, 0, 0, 1);
+    --dark-green-color: #63af65;
+    --green-color: #4caf50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    background: linear-gradient(
+            144deg,
+            rgba(29, 113, 158, 1) 36%,
+            rgba(113, 30, 120, 1) 100%
+        )
+        no-repeat;
+    color: var(--text-color);
+    font-family: "Lato", sans-serif;
+    min-height: 100vh;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+h3 {
+    font-size: 1rem;
+}
+
+a:hover {
+    color: var(--text-orange-color);
+}
+
+/* End Global */
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Start Header */
+
+header {
+    padding-top: 1rem;
+}
+
+.logo {
+    text-align: center;
+}
+
+.logo img {
+    position: relative;
+    left: 0;
+    transition: all 0.8s ease;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 70vw;
+    height: 100vh;
+    background-color: var(--black-transparent-7);
+    transition: all 0.8s ease;
+}
+
+nav.show-up {
+    left: 0;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.nav-links li {
+    margin-bottom: 3rem;
+}
+
+/* End Header */
+
+/* Start Sidebar */
+
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 1rem;
+    background-color: var(--black-color);
+}
+
+.sidebar-links {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* End Sidebar */
+
+/* Start Movie Section */
+
+.movie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0 3rem;
+}
+
+.movie-item {
+    width: 48%;
+    padding-bottom: 1rem;
+}
+
+.movie-item img {
+    max-width: 100%;
+    transition: filter 0.8s ease;
+}
+
+/* End Movie Section */
+
+/* Start Modal Login Form */
+
+.modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-transparent-4);
+    display: none;
+}
+
+.modal-container.show-modal {
+    display: block;
+}
+
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--black-transparent-7);
+    width: 90%;
+    padding: 2rem;
+}
+
+.modal p {
+    color: #b63d3d;
+    text-align: right;
+    display: none;
+}
+
+.header-modal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 1rem 0;
+    display: inline-block;
+    border: 1px solid var(--text-color);
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none;
+    color: var(--text-color);
+}
+
+.input-field:focus {
+    border-color: var(--green-color);
+}
+
+input[type="text"]:focus ~ .username-valid-input {
+    display: inherit;
+}
+
+input[type="password"]:focus ~ .password-valid-input {
+    display: inherit;
+}
+
+.input-field.valid {
+    color: #44e444;
+}
+
+.input-field.invalid {
+    color: #ff0000;
+}
+
+form {
+    margin-top: 1rem;
+}
+
+.username-valid-input,
+.password-valid-input {
+    color: gray;
+    list-style-type: circle;
+    list-style-position: inside;
+    font-size: 0.9rem;
+    display: none;
+    padding-bottom: 1rem;
+}
+
+button {
+    background-color: var(--green-color);
+    color: var(--text-color);
+    padding: 0.9rem 1.2rem;
+    margin: 0.5rem 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    outline: none;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+button:hover,
+button#register-btn:hover {
+    background-color: var(--dark-green-color);
+}
+
+button#register-btn {
+    background-color: transparent;
+    border: 1px solid var(--green-color);
+}
+
+/* End Modal Login Form */
+
+/* Different Size */
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    html {
+        font-size: 16px;
+    }
+
+    .movie-item {
+        width: 30%;
+    }
+
+    nav {
+        left: -520px;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+    nav {
+        left: -600px;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo img {
+        display: none;
+    }
+
+    main {
+        margin-top: 3rem;
+    }
+
+    nav {
+        position: static;
+        height: auto;
+        background-color: transparent;
+        flex-basis: 40%;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin-bottom: 0;
+        padding-right: 0.5rem;
+    }
+
+    .movie-container {
+        padding: 0;
+    }
+
+    .movie-item {
+        width: 25%;
+        padding: 0 0.5rem 0.5rem;
+    }
+
+    .sidebar {
+        position: static;
+        width: 20%;
+        background-color: transparent;
+        float: left;
+        padding: 0;
+    }
+
+    .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 20vh;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    html {
+        font-size: 18px;
+    }
+
+    .movie-container {
+        justify-content: flex-start;
+    }
+
+    .movie-item {
+        width: 20%;
+    }
+}
