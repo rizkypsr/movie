@@ -2,32 +2,35 @@ const menuBtn = document.querySelector("#menu-button");
 const navbar = document.querySelector("nav");
 
 const form = document.querySelector("form");
-const username = form.elements.namedItem("username");
+const usernameInput = form.elements.namedItem("username");
 
 const usernameBtn = document.querySelector("#username");
 const modalLogin = document.querySelector(".modal-container");
+const closeModal = document.querySelector(".close");
 
 window.addEventListener("load", checkAccount);
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    setAccountLocalStorage(username.value);
+    setAccountLocalStorage(usernameInput.value);
     modalLogin.classList.toggle("show-modal");
+    e.target.reset();
 });
 
-username.addEventListener("input", (e) => {
+usernameInput.addEventListener("input", (e) => {
     const loginBtn = document.querySelector("#login-btn");
+    const errorInfo = document.querySelector("#error-user");
+    const usernameLocal = getAccountLocalStorage();
     const target = e.target;
 
     if (target.name == "username") {
-        if (target.value.length >= 3) {
-            loginBtn.disabled = false;
-            target.classList.add("valid");
-            target.classList.remove("invalid");
-        } else {
+        if (usernameLocal.includes(target.value)) {
             loginBtn.disabled = true;
-            target.classList.add("invalid");
-            target.classList.remove("valid");
+            errorInfo.innerHTML = "Username has already taken";
+            errorInfo.style.display = "block";
+        } else {
+            loginBtn.disabled = false;
+            errorInfo.style.display = "none";
         }
     }
 });
@@ -39,6 +42,10 @@ menuBtn.addEventListener("click", () => {
 usernameBtn.addEventListener("click", () => {
     showNavbar();
     modalLogin.classList.toggle("show-modal");
+});
+
+closeModal.addEventListener("click", () => {
+    modalLogin.classList.remove("show-modal");
 });
 
 function checkAccount() {
@@ -58,11 +65,11 @@ function setAccountLocalStorage(uname) {
     if (!username.includes(uname)) {
         username.push(uname);
         localStorage.setItem("username", JSON.stringify(username));
+        usernameBtn.innerText = uname;
     } else {
         errorInfo.innerHTML = "Username has already taken";
         errorInfo.style.display = "block";
     }
-    console.log(username);
 }
 
 function getAccountLocalStorage() {
@@ -82,7 +89,7 @@ function showNavbar() {
     const posLeft = `${(windowWidth - navbarWidth).toString()}px`;
 
     if (menuBtn.getAttribute("src") == "img/icons8-menu-30.png") {
-        menuBtn.setAttribute("src", "img/icons8-multiply-24.png");
+        menuBtn.setAttribute("src", "img/close.png");
     } else {
         menuBtn.setAttribute("src", "img/icons8-menu-30.png");
     }

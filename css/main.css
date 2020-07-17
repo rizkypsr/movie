@@ -49,6 +49,11 @@ a:hover {
     color: var(--text-orange-color);
 }
 
+.checked,
+.active {
+    color: var(--text-orange-color);
+}
+
 /* End Global */
 
 .container {
@@ -96,6 +101,16 @@ nav.show-up {
 
 .nav-links li {
     margin-bottom: 3rem;
+    cursor: pointer;
+}
+
+.nav-links li#username {
+    text-decoration: underline;
+}
+
+.nav-links li#username:hover {
+    font-weight: bold;
+    text-decoration-color: var(--text-orange-color);
 }
 
 /* End Header */
@@ -169,6 +184,10 @@ nav.show-up {
     color: #b63d3d;
     text-align: right;
     display: none;
+}
+
+.close {
+    cursor: pointer;
 }
 
 .header-modal {
@@ -330,6 +349,10 @@ button#register-btn {
         flex-direction: column;
         justify-content: space-between;
         height: 20vh;
+    }
+
+    .modal {
+        width: 50%;
     }
 }
 
